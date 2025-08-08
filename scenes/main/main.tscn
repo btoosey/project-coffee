@@ -1,3 +1,19 @@
-[gd_scene format=3 uid="uid://dwjugs8rknxdb"]
+[gd_scene load_steps=4 format=4 uid="uid://dwjugs8rknxdb"]
+
+[ext_resource type="Texture2D" uid="uid://b5lh5t8nxrekw" path="res://assets/sprites/tilemaps/walls/placeholder_wall.png" id="1_hyk8p"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iuonh"]
+texture = ExtResource("1_hyk8p")
+0:0/0 = 0
+0:0/0/custom_data_0 = "Wall"
+
+[sub_resource type="TileSet" id="TileSet_k2fmo"]
+custom_data_layer_0/name = "Type"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_iuonh")
 
 [node name="Main" type="Node"]
+
+[node name="PlaceholderWalls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAPAAcAAAAAAAAAAAAQAAcAAAAAAAAAAAARAAcAAAAAAAAAAAASAAcAAAAAAAAAAAATAAcAAAAAAAAAAAAUAAcAAAAAAAAAAAAVAAcAAAAAAAAAAAAWAAcAAAAAAAAAAAAXAAcAAAAAAAAAAAAYAAcAAAAAAAAAAAAYABAAAAAAAAAAAAAPABAAAAAAAAAAAAAQABAAAAAAAAAAAAARABAAAAAAAAAAAAASABAAAAAAAAAAAAATABAAAAAAAAAAAAAUABAAAAAAAAAAAAAVABAAAAAAAAAAAAAWABAAAAAAAAAAAAAXABAAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAAYAA4AAAAAAAAAAAAYAA8AAAAAAAAAAAAPAAgAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAsAAAAAAAAAAAAPAAwAAAAAAAAAAAAPAA0AAAAAAAAAAAAPAA4AAAAAAAAAAAAPAA8AAAAAAAAAAAATAAwAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_k2fmo")
