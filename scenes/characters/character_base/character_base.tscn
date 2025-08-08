@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b84pvfr4osk8w"]
+
+[ext_resource type="Texture2D" uid="uid://d1rh0f4l206m5" path="res://assets/sprites/spritesheets/characters/player/placeholder_player_spritesheet.png" id="1_e17ms"]
+
+[node name="CharacterBase" type="Node2D"]
+
+[node name="Visuals" type="Node2D" parent="."]
+position = Vector2(0, -4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("1_e17ms")
+region_enabled = true
+region_rect = Rect2(16, 16, 16, 16)
