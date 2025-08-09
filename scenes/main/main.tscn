@@ -15,9 +15,18 @@ sources/0 = SubResource("TileSetAtlasSource_iuonh")
 
 [node name="Main" type="Node"]
 
+[node name="CharacterBase" parent="." instance=ExtResource("2_iuonh")]
+position = Vector2(312, 168)
+
+[node name="AStarPathfinderComponent" parent="CharacterBase" index="1" node_paths=PackedStringArray("tilemap_layer_walls")]
+tilemap_layer_walls = NodePath("../../PlaceholderWalls")
+
+[node name="Line2D" parent="CharacterBase/AStarPathfinderComponent" index="0"]
+width = 2.0
+default_color = Color(0, 0.627451, 0.631373, 0.435294)
+
 [node name="PlaceholderWalls" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAPAAcAAAAAAAAAAAAQAAcAAAAAAAAAAAARAAcAAAAAAAAAAAASAAcAAAAAAAAAAAATAAcAAAAAAAAAAAAUAAcAAAAAAAAAAAAVAAcAAAAAAAAAAAAWAAcAAAAAAAAAAAAXAAcAAAAAAAAAAAAYAAcAAAAAAAAAAAAYABAAAAAAAAAAAAAPABAAAAAAAAAAAAAQABAAAAAAAAAAAAARABAAAAAAAAAAAAASABAAAAAAAAAAAAATABAAAAAAAAAAAAAUABAAAAAAAAAAAAAVABAAAAAAAAAAAAAWABAAAAAAAAAAAAAXABAAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAAYAA4AAAAAAAAAAAAYAA8AAAAAAAAAAAAPAAgAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAsAAAAAAAAAAAAPAAwAAAAAAAAAAAAPAA0AAAAAAAAAAAAPAA4AAAAAAAAAAAAPAA8AAAAAAAAAAAATAAwAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_k2fmo")
 
-[node name="CharacterBase" parent="." instance=ExtResource("2_iuonh")]
-position = Vector2(320, 160)
+[editable path="CharacterBase"]

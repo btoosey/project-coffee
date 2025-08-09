@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b84pvfr4osk8w"]
+[gd_scene load_steps=3 format=3 uid="uid://b84pvfr4osk8w"]
 
 [ext_resource type="Texture2D" uid="uid://d1rh0f4l206m5" path="res://assets/sprites/spritesheets/characters/player/placeholder_player_spritesheet.png" id="1_e17ms"]
+[ext_resource type="Script" uid="uid://o112ro6y6q11" path="res://scripts/components/character/a_star_pathfinder_component.gd" id="2_284wd"]
 
 [node name="CharacterBase" type="Node2D"]
 
@@ -11,3 +12,12 @@ position = Vector2(0, -4)
 texture = ExtResource("1_e17ms")
 region_enabled = true
 region_rect = Rect2(16, 16, 16, 16)
+
+[node name="AStarPathfinderComponent" type="Node" parent="." node_paths=PackedStringArray("character", "visual_path_line2D")]
+script = ExtResource("2_284wd")
+character = NodePath("..")
+visual_path_line2D = NodePath("Line2D")
+
+[node name="Line2D" type="Line2D" parent="AStarPathfinderComponent"]
+
+[node name="TargetTimer" type="Timer" parent="AStarPathfinderComponent"]
