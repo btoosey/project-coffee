@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=4 uid="uid://ojp87xwddiij"]
+[gd_scene load_steps=7 format=4 uid="uid://ojp87xwddiij"]
 
 [ext_resource type="Texture2D" uid="uid://6ehxehli6saf" path="res://assets/sprites/tilemaps/walls/placeholder_wall.png" id="1_hyk8p"]
+[ext_resource type="PackedScene" uid="uid://d16s4bnnn4ana" path="res://scenes/character/base/character_base.tscn" id="2_iuonh"]
+[ext_resource type="Shader" uid="uid://c4oea7qk6fprd" path="res://resources/shaders/outline_highlighter.gdshader" id="3_k2fmo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iuonh"]
 texture = ExtResource("1_hyk8p")
@@ -12,8 +14,35 @@ custom_data_layer_0/name = "Type"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_iuonh")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l3cfh"]
+resource_local_to_scene = true
+shader = ExtResource("3_k2fmo")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0
+
 [node name="Main" type="Node"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAXAA8AAAAAAAAAAAAPAAYAAAAAAAAAAAAQAAYAAAAAAAAAAAARAAYAAAAAAAAAAAASAAYAAAAAAAAAAAATAAYAAAAAAAAAAAAUAAYAAAAAAAAAAAAVAAYAAAAAAAAAAAAWAAYAAAAAAAAAAAAXAAYAAAAAAAAAAAAPAA8AAAAAAAAAAAAQAA8AAAAAAAAAAAARAA8AAAAAAAAAAAASAA8AAAAAAAAAAAATAA8AAAAAAAAAAAAUAA8AAAAAAAAAAAAVAA8AAAAAAAAAAAAWAA8AAAAAAAAAAAAYAAYAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAAYAA4AAAAAAAAAAAAYAA8AAAAAAAAAAAATAAsAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAsAAAAAAAAAAAAPAAwAAAAAAAAAAAAPAA0AAAAAAAAAAAAPAA4AAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_k2fmo")
+
+[node name="CharacterBase" parent="." instance=ExtResource("2_iuonh")]
+position = Vector2(312, 168)
+
+[node name="AStarPathfinderComponent" parent="CharacterBase" index="0" node_paths=PackedStringArray("tilemap_layer_walls")]
+tilemap_layer_walls = NodePath("../../TileMapLayer")
+
+[node name="Line2D" parent="CharacterBase/AStarPathfinderComponent" index="0"]
+default_color = Color(1, 1, 1, 0)
+
+[node name="TargetTimer" parent="CharacterBase/AStarPathfinderComponent" index="1"]
+wait_time = 3.0
+
+[node name="VelocityComponent" parent="CharacterBase" index="1"]
+max_speed = 34.0
+acceleration = 1.2
+
+[node name="Visuals" parent="CharacterBase" index="6"]
+material = SubResource("ShaderMaterial_l3cfh")
+
+[editable path="CharacterBase"]
