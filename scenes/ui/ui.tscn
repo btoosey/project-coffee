@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2med65ppcfws"]
+
+[ext_resource type="Script" uid="uid://dc0tlreerllsv" path="res://scripts/components/ui/ui.gd" id="1_x4jx1"]
+[ext_resource type="Script" uid="uid://xc5s46f6ub8p" path="res://scripts/components/ui/panel_bottom.gd" id="2_yev5y"]
+[ext_resource type="Script" uid="uid://clqg0kqfiyqmx" path="res://scripts/components/ui/panel_zones.gd" id="3_yev5y"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_x4jx1")
+
+[node name="PanelBottom" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.134
+anchor_top = 0.848
+anchor_right = 0.86
+anchor_bottom = 0.931
+offset_left = 0.239998
+offset_right = -0.400024
+offset_bottom = -0.160034
+script = ExtResource("2_yev5y")
+
+[node name="ButtonZones" type="Button" parent="PanelBottom"]
+layout_mode = 0
+anchor_right = 0.2
+anchor_bottom = 1.0
+text = "Zones"
+
+[node name="ButtonRota" type="Button" parent="PanelBottom"]
+layout_mode = 0
+anchor_left = 0.2
+anchor_right = 0.4
+anchor_bottom = 1.0
+text = "Rota"
+
+[node name="ButtonCatalogue" type="Button" parent="PanelBottom"]
+layout_mode = 0
+anchor_left = 0.4
+anchor_right = 0.6
+anchor_bottom = 1.0
+text = "Catalogue"
+
+[node name="ButtonStats" type="Button" parent="PanelBottom"]
+layout_mode = 0
+anchor_left = 0.6
+anchor_right = 0.8
+anchor_bottom = 1.0
+text = "Stats"
+
+[node name="ButtonResearch" type="Button" parent="PanelBottom"]
+layout_mode = 0
+anchor_left = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Research"
+
+[node name="Zones" type="Panel" parent="."]
+anchors_preset = -1
+anchor_left = 0.134
+anchor_top = 0.755
+anchor_right = 0.859
+anchor_bottom = 0.839
+script = ExtResource("3_yev5y")
+
+[node name="ButtonEmployeeZone" type="Button" parent="Zones"]
+layout_mode = 0
+anchor_right = 0.333333
+anchor_bottom = 1.0
+text = "Employee Zone"
+
+[node name="ButtonQueueZone" type="Button" parent="Zones"]
+layout_mode = 0
+anchor_left = 0.333333
+anchor_right = 0.666667
+anchor_bottom = 1.0
+text = "Queue Zone"
+
+[node name="ButtonDeleteZone" type="Button" parent="Zones"]
+layout_mode = 0
+anchor_left = 0.666667
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Delete Zone"
