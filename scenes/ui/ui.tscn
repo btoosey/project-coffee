@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2med65ppcfws"]
+
+[ext_resource type="Script" uid="uid://xc5s46f6ub8p" path="res://scripts/ui/actions_menu/action_options.gd" id="2_yev5y"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -66.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2
+
+[node name="Zones" type="HBoxContainer" parent="Control/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ButtonEmployeeZone" type="Button" parent="Control/VBoxContainer/Zones"]
+layout_mode = 2
+text = "Employee Zone"
+
+[node name="ButtonQueueZone" type="Button" parent="Control/VBoxContainer/Zones"]
+layout_mode = 2
+text = "Queue Zone"
+
+[node name="ButtonDeleteZone" type="Button" parent="Control/VBoxContainer/Zones"]
+layout_mode = 2
+text = "Delete Zone"
+
+[node name="ActionOptions" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_yev5y")
+
+[node name="ButtonZones" type="Button" parent="Control/VBoxContainer/ActionOptions"]
+layout_mode = 2
+text = "Zones"
+
+[node name="ButtonRota" type="Button" parent="Control/VBoxContainer/ActionOptions"]
+layout_mode = 2
+text = "Rota"
+
+[node name="ButtonCatalogue" type="Button" parent="Control/VBoxContainer/ActionOptions"]
+layout_mode = 2
+text = "Catalogue"
+
+[node name="ButtonStats" type="Button" parent="Control/VBoxContainer/ActionOptions"]
+layout_mode = 2
+text = "Stats"
+
+[node name="ButtonResearch" type="Button" parent="Control/VBoxContainer/ActionOptions"]
+layout_mode = 2
+text = "Research"

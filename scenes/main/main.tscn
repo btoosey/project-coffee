@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://ojp87xwddiij"]
+[gd_scene load_steps=8 format=4 uid="uid://ojp87xwddiij"]
 
 [ext_resource type="Texture2D" uid="uid://6ehxehli6saf" path="res://assets/sprites/tilemaps/walls/placeholder_wall.png" id="1_hyk8p"]
 [ext_resource type="PackedScene" uid="uid://d16s4bnnn4ana" path="res://scenes/character/base/character_base.tscn" id="2_iuonh"]
 [ext_resource type="Shader" uid="uid://c4oea7qk6fprd" path="res://resources/shaders/outline_highlighter.gdshader" id="3_k2fmo"]
+[ext_resource type="PackedScene" uid="uid://d2med65ppcfws" path="res://scenes/ui/ui.tscn" id="4_l3cfh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iuonh"]
 texture = ExtResource("1_hyk8p")
@@ -44,5 +45,7 @@ acceleration = 1.2
 
 [node name="Visuals" parent="CharacterBase" index="6"]
 material = SubResource("ShaderMaterial_l3cfh")
+
+[node name="UI" parent="." instance=ExtResource("4_l3cfh")]
 
 [editable path="CharacterBase"]
