@@ -25,6 +25,7 @@ func _open_submenu(menu: String):
 		if menu == submenu.name:
 			if submenu.is_visible():
 				submenu.set_visible(false)
+				submenu.enabled = false
 			else:
 				submenu.set_visible(true)
 		else:

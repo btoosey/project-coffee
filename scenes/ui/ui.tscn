@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2med65ppcfws"]
+[gd_scene load_steps=3 format=3 uid="uid://d2med65ppcfws"]
 
+[ext_resource type="Script" uid="uid://c4gqjje8oiaxq" path="res://scripts/managers/zone_manager.gd" id="1_f5cxw"]
 [ext_resource type="Script" uid="uid://xc5s46f6ub8p" path="res://scripts/ui/actions_menu/action_options.gd" id="2_yev5y"]
 
 [node name="UI" type="CanvasLayer"]
@@ -29,18 +30,24 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("1_f5cxw")
 
-[node name="ButtonEmployeeZone" type="Button" parent="Control/VBoxContainer/Zones"]
+[node name="ButtonStaffZone" type="Button" parent="Control/VBoxContainer/Zones"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Employee Zone"
+text = "Staff"
 
 [node name="ButtonQueueZone" type="Button" parent="Control/VBoxContainer/Zones"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Queue Zone"
+text = "Queue
+"
 
-[node name="ButtonDeleteZone" type="Button" parent="Control/VBoxContainer/Zones"]
+[node name="ButtonPlanningZone" type="Button" parent="Control/VBoxContainer/Zones"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Delete Zone"
+text = "Planning
+"
 
 [node name="ActionOptions" type="HBoxContainer" parent="Control/VBoxContainer"]
 layout_mode = 2

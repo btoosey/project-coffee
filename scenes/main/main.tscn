@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=4 uid="uid://ojp87xwddiij"]
+[gd_scene load_steps=11 format=4 uid="uid://ojp87xwddiij"]
 
 [ext_resource type="Texture2D" uid="uid://6ehxehli6saf" path="res://assets/sprites/tilemaps/walls/placeholder_wall.png" id="1_hyk8p"]
 [ext_resource type="PackedScene" uid="uid://d16s4bnnn4ana" path="res://scenes/character/base/character_base.tscn" id="2_iuonh"]
+[ext_resource type="Texture2D" uid="uid://daivcj5oxngqf" path="res://assets/sprites/tilemaps/zones/staff_zone.png" id="2_ow5a4"]
 [ext_resource type="Shader" uid="uid://c4oea7qk6fprd" path="res://resources/shaders/outline_highlighter.gdshader" id="3_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://d2med65ppcfws" path="res://scenes/ui/ui.tscn" id="4_l3cfh"]
 
@@ -15,6 +16,16 @@ custom_data_layer_0/name = "Type"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_iuonh")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yyfjg"]
+texture = ExtResource("2_ow5a4")
+0:0/0 = 0
+0:0/0/custom_data_0 = "STAFF"
+
+[sub_resource type="TileSet" id="TileSet_l3cfh"]
+custom_data_layer_0/name = "type"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_yyfjg")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l3cfh"]
 resource_local_to_scene = true
 shader = ExtResource("3_k2fmo")
@@ -26,6 +37,11 @@ shader_parameter/line_thickness = 0
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAXAA8AAAAAAAAAAAAPAAYAAAAAAAAAAAAQAAYAAAAAAAAAAAARAAYAAAAAAAAAAAASAAYAAAAAAAAAAAATAAYAAAAAAAAAAAAUAAYAAAAAAAAAAAAVAAYAAAAAAAAAAAAWAAYAAAAAAAAAAAAXAAYAAAAAAAAAAAAPAA8AAAAAAAAAAAAQAA8AAAAAAAAAAAARAA8AAAAAAAAAAAASAA8AAAAAAAAAAAATAA8AAAAAAAAAAAAUAA8AAAAAAAAAAAAVAA8AAAAAAAAAAAAWAA8AAAAAAAAAAAAYAAYAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAAYAA4AAAAAAAAAAAAYAA8AAAAAAAAAAAATAAsAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAsAAAAAAAAAAAAPAAwAAAAAAAAAAAAPAA0AAAAAAAAAAAAPAA4AAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_k2fmo")
+metadata/_edit_lock_ = true
+
+[node name="ZoningLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_l3cfh")
+metadata/_edit_lock_ = true
 
 [node name="CharacterBase" parent="." instance=ExtResource("2_iuonh")]
 position = Vector2(312, 168)
@@ -48,4 +64,9 @@ material = SubResource("ShaderMaterial_l3cfh")
 
 [node name="UI" parent="." instance=ExtResource("4_l3cfh")]
 
+[node name="Zones" parent="UI/Control/VBoxContainer" index="0" node_paths=PackedStringArray("zoning_layer")]
+boundary_rect = Rect2(0, 0, 39, 17)
+zoning_layer = NodePath("../../../../ZoningLayer")
+
 [editable path="CharacterBase"]
+[editable path="UI"]
