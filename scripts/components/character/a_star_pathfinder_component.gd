@@ -6,9 +6,11 @@ signal character_to_target_path_acquired(path)
 const line_color: Color = Color8(255, 255, 255, 60)
 
 @export var tilemap_layer_walls: TileMapLayer = null
+@export var tilemap_layer_zones: TileMapLayer = null
 @export var character: Node2D = null
 @export var visual_path_line2D: Line2D = null
 @export var velocity_component: VelocityComponent = null
+@export var zone_manager: ZoneManager = null
 
 @onready var target_timer: Timer = $TargetTimer
 
@@ -21,6 +23,8 @@ func _ready() -> void:
 	visual_path_line2D.global_position = Vector2(Globals.HALF_TILE_SIZE, Globals.HALF_TILE_SIZE)
 
 	target_timer.timeout.connect(_on_target_timer_timeout)
+	zone_manager.zone_tile_added.connect(_on_zone_tile_added)
+	zone_manager.zone_tile_removed.connect(_on_zone_tile_removed)
 
 	pathfinding_grid.region = tilemap_layer_walls.get_used_rect()
 	pathfinding_grid.cell_size = Vector2(Globals.TILE_SIZE, Globals.TILE_SIZE)
@@ -58,3 +62,18 @@ func _select_character_target() -> void:
 		_select_character_target()
 
 	target_tile = Vector2(x, y)
+
+
+func _on_zone_tile_added() -> void:
+	if character.is_staff == false:
+		var current_cell: Vector2i = tilemap_layer_zones.local_to_map(tilemap_layer_zones.get_global_mouse_position())
+		var data = tilemap_layer_zones.get_cell_tile_data(current_cell)
+		if data && data.get_custom_data("type") == "STAFF":
+			pathfinding_grid.set_point_solid(current_cell, true)
+
+
+func _on_zone_tile_removed() -> void:
+	var current_cell: Vector2i = tilemap_layer_zones.local_to_map(tilemap_layer_zones.get_global_mouse_position())
+	pathfinding_grid.set_point_solid(current_cell, false)
+	if tilemap_layer_walls.get_cell_tile_data(current_cell):
+		pathfinding_grid.set_point_solid(current_cell, true)

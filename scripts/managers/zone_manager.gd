@@ -1,8 +1,10 @@
-extends HBoxContainer
+class_name ZoneManager
+extends Node
 
-@onready var button_staff_zone: Button = %ButtonStaffZone
-@onready var button_queue_zone: Button = %ButtonQueueZone
-@onready var button_plan_zone: Button = %ButtonPlanningZone
+signal zone_tile_added
+signal zone_tile_removed
+
+@onready var ui: CanvasLayer = $"../ActionModeUI"
 
 @export var boundary_rect: Rect2
 @export var zoning_layer: TileMapLayer
@@ -11,17 +13,14 @@ extends HBoxContainer
 var is_creating_zone: bool = false
 var is_removing_zone: bool = false
 var is_editing_staff: bool = false
-var is_editing_queue: bool = false
-var is_editing_plan: bool = false
 var current_hovered_tile: Vector2i
 var previously_placed_hovered_tile: Vector2i
 var previously_removed_hovered_tile: Vector2i
 
 
 func _ready() -> void:
-	button_staff_zone.pressed.connect(_on_button_staff_zone_pressed)
-	button_queue_zone.pressed.connect(_on_button_queue_zone_pressed)
-	button_plan_zone.pressed.connect(_on_button_plan_zone_pressed)
+	ui.staff_zone_button_pressed.connect(_on_button_staff_zone_pressed)
+	ui.disable_action_modes.connect(_on_disable_action_mode)
 
 
 func _process(_delta: float) -> void:
@@ -41,12 +40,14 @@ func _process(_delta: float) -> void:
 		if previously_placed_hovered_tile == current_hovered_tile:
 			return
 		previously_placed_hovered_tile = current_hovered_tile
+		zone_tile_added.emit()
 
 	elif is_removing_zone:
 		zoning_layer.erase_cell(current_hovered_tile)
 		if previously_removed_hovered_tile == current_hovered_tile:
 			return
 		previously_removed_hovered_tile = current_hovered_tile
+		zone_tile_removed.emit()
 
 
 func _input(event: InputEvent) -> void:
@@ -76,27 +77,21 @@ func _toggle_is_editing_staff() -> void:
 	is_editing_staff = !is_editing_staff
 
 
-func _on_button_queue_zone_pressed() -> void:
-	_deactivate_zone_buttons()
-	enabled = true
-	_toggle_is_editing_queue()
-
-
-func _toggle_is_editing_queue() -> void:
-	is_editing_queue = !is_editing_queue
-
-
-func _on_button_plan_zone_pressed() -> void:
-	_deactivate_zone_buttons()
-	enabled = true
-	_toggle_is_editing_plan()
-
-
-func _toggle_is_editing_plan() -> void:
-	is_editing_plan = !is_editing_plan
-
-
 func _deactivate_zone_buttons() -> void:
 	enabled = false
 	is_editing_staff = false
-	is_editing_queue = false
+
+
+func _on_disable_action_mode() -> void:
+	_deactivate_zone_buttons()
+
+
+func _on_button_zones_pressed() -> void:
+	toggle_zones_visibility()
+
+
+func toggle_zones_visibility() -> void:
+	if !zoning_layer.visible:
+		zoning_layer.show()
+	else:
+		zoning_layer.hide()

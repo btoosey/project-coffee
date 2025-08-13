@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://d16s4bnnn4ana"]
+[gd_scene load_steps=12 format=3 uid="uid://d16s4bnnn4ana"]
 
 [ext_resource type="Script" uid="uid://dnyxjokln0ixb" path="res://scripts/components/character/a_star_pathfinder_component.gd" id="1_4u6nk"]
 [ext_resource type="Texture2D" uid="uid://cjkk01jk25wv8" path="res://assets/sprites/spritesheets/character/base/placeholder_player_spritesheet.png" id="1_lc1d0"]
+[ext_resource type="Script" uid="uid://d181i4xk34oy1" path="res://scripts/character/character_base.gd" id="1_s8w3i"]
 [ext_resource type="Script" uid="uid://dqs67ka0cxq12" path="res://scripts/components/character/velocity_component.gd" id="2_78gsm"]
 [ext_resource type="Script" uid="uid://beuaocx1snkqw" path="res://scripts/components/character/movement_component/movement_component.gd" id="3_03fy3"]
 [ext_resource type="Script" uid="uid://cvfmwqaqhg88q" path="res://scripts/components/outline_highlighter.gd" id="4_g5fk4"]
@@ -19,6 +20,7 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0
 
 [node name="CharacterBase" type="Node2D"]
+script = ExtResource("1_s8w3i")
 
 [node name="AStarPathfinderComponent" type="Node" parent="." node_paths=PackedStringArray("character", "visual_path_line2D", "velocity_component")]
 script = ExtResource("1_4u6nk")
