@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://8s3dbdku37vs"]
+
+[ext_resource type="Script" uid="uid://cfmjfhwcignlm" path="res://scripts/ui/clock/clock.gd" id="1_ic7of"]
+
+[node name="Clock" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ic7of")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.062
+anchor_bottom = 0.139
+offset_left = 553.0
+offset_top = 11.0
+offset_right = 589.32
+offset_bottom = 10.96
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Day" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Mon"
+
+[node name="Date" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="Time" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "7:30 am"
+
+[node name="Timer" type="Timer" parent="Control"]
+wait_time = 5.0
+one_shot = true
