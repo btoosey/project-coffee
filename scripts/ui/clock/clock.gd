@@ -7,7 +7,6 @@ extends Control
 @onready var time: Label = $VBoxContainer/Time
 @onready var timer: Timer = $Timer
 
-
 var days: Array = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 var seasons: Array = ["Spring", "Summer", "Autumn", "Winter"]
 
@@ -17,11 +16,12 @@ var current_day_index: int = 0
 var current_date: int = 1
 var current_season_index: int = 0
 
+
 func _ready():
 	update_ui()
 	timer.timeout.connect(_on_timer_timeout)
-	timer.start()
 	print(seasons[current_season_index])
+
 
 func _on_timer_timeout():
 	minutes += 10
@@ -30,7 +30,7 @@ func _on_timer_timeout():
 		hour += 1
 
 	# End of day
-	if hour >= 18 and minutes >= 30:
+	if hour >= 18 && minutes >= 30:
 		hour = 7
 		minutes = 30
 		current_date += 1
@@ -42,13 +42,13 @@ func _on_timer_timeout():
 		if current_date > season_length:
 			current_date = 1
 			current_season_index = (current_season_index + 1)
-			print(seasons[current_season_index])
+
 		if current_season_index >= seasons.size():
 					current_season_index = 0
-					print(seasons[current_season_index])
+
 	update_ui()
-	timer.start()
-	
+
+
 func update_ui():
 	day.text = days[current_day_index]
 	date.text = str(current_date)
