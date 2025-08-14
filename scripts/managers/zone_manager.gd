@@ -69,7 +69,6 @@ func _process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-
 	if !staff_enabled && !plan_enabled:
 		return
 
