@@ -1,5 +1,7 @@
 extends HBoxContainer
 
+signal deactivate_action_modes
+
 #TODO make ui invisible if character is selected
 
 func _ready():
@@ -25,10 +27,12 @@ func _open_submenu(menu: String):
 		if menu == submenu.name:
 			if submenu.is_visible():
 				submenu.set_visible(false)
+				deactivate_action_modes.emit()
 			else:
 				submenu.set_visible(true)
 		else:
 			submenu.set_visible(false)
+			deactivate_action_modes.emit()
 
 
 func _get_buttons() -> Array:

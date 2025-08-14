@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=4 uid="uid://ojp87xwddiij"]
+[gd_scene load_steps=12 format=4 uid="uid://ojp87xwddiij"]
 
 [ext_resource type="Texture2D" uid="uid://6ehxehli6saf" path="res://assets/sprites/tilemaps/walls/placeholder_wall.png" id="1_hyk8p"]
 [ext_resource type="Script" uid="uid://c4gqjje8oiaxq" path="res://scripts/managers/zone_manager.gd" id="1_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://d16s4bnnn4ana" path="res://scenes/character/base/character_base.tscn" id="2_iuonh"]
 [ext_resource type="Texture2D" uid="uid://daivcj5oxngqf" path="res://assets/sprites/tilemaps/zones/staff_zone.png" id="2_ow5a4"]
 [ext_resource type="Shader" uid="uid://c4oea7qk6fprd" path="res://resources/shaders/outline_highlighter.gdshader" id="3_k2fmo"]
-[ext_resource type="Texture2D" uid="uid://j1pl7uflui35" path="res://assets/sprites/tilemaps/zones/plan_zone.png" id="4_hujxm"]
 [ext_resource type="PackedScene" uid="uid://d2med65ppcfws" path="res://scenes/ui/ui.tscn" id="4_l3cfh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iuonh"]
@@ -28,13 +27,6 @@ custom_data_layer_0/name = "type"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_yyfjg")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b1x3f"]
-texture = ExtResource("4_hujxm")
-0:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_a8run"]
-sources/0 = SubResource("TileSetAtlasSource_b1x3f")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l3cfh"]
 resource_local_to_scene = true
 shader = ExtResource("3_k2fmo")
@@ -43,11 +35,10 @@ shader_parameter/line_thickness = 0
 
 [node name="Main" type="Node"]
 
-[node name="ZoneManager" type="Node" parent="." node_paths=PackedStringArray("zoning_layer", "planning_layer")]
+[node name="ZoneManager" type="Node" parent="." node_paths=PackedStringArray("zoning_layer")]
 script = ExtResource("1_ow5a4")
 boundary_rect = Rect2(15, 6, 10, 10)
 zoning_layer = NodePath("../ZoningLayer")
-planning_layer = NodePath("../PlanningLayer")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAXAA8AAAAAAAAAAAAPAAYAAAAAAAAAAAAQAAYAAAAAAAAAAAARAAYAAAAAAAAAAAASAAYAAAAAAAAAAAATAAYAAAAAAAAAAAAUAAYAAAAAAAAAAAAVAAYAAAAAAAAAAAAWAAYAAAAAAAAAAAAXAAYAAAAAAAAAAAAPAA8AAAAAAAAAAAAQAA8AAAAAAAAAAAARAA8AAAAAAAAAAAASAA8AAAAAAAAAAAATAA8AAAAAAAAAAAAUAA8AAAAAAAAAAAAVAA8AAAAAAAAAAAAWAA8AAAAAAAAAAAAYAAYAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAAYAA4AAAAAAAAAAAAYAA8AAAAAAAAAAAATAAsAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAsAAAAAAAAAAAAPAAwAAAAAAAAAAAAPAA0AAAAAAAAAAAAPAA4AAAAAAAAAAAA=")
@@ -57,11 +48,6 @@ metadata/_edit_lock_ = true
 [node name="ZoningLayer" type="TileMapLayer" parent="."]
 visible = false
 tile_set = SubResource("TileSet_l3cfh")
-metadata/_edit_lock_ = true
-
-[node name="PlanningLayer" type="TileMapLayer" parent="."]
-visible = false
-tile_set = SubResource("TileSet_a8run")
 metadata/_edit_lock_ = true
 
 [node name="CharacterBase" parent="." instance=ExtResource("2_iuonh")]
