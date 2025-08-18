@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d16s4bnnn4ana"]
+[gd_scene load_steps=13 format=3 uid="uid://d16s4bnnn4ana"]
 
 [ext_resource type="Script" uid="uid://dnyxjokln0ixb" path="res://scripts/components/character/a_star_pathfinder_component.gd" id="1_4u6nk"]
 [ext_resource type="Texture2D" uid="uid://cjkk01jk25wv8" path="res://assets/sprites/spritesheets/character/base/placeholder_player_spritesheet.png" id="1_lc1d0"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://c4oea7qk6fprd" path="res://resources/shaders/outline_highlighter.gdshader" id="5_3etf4"]
 [ext_resource type="Script" uid="uid://bx7ddmfcufuyi" path="res://scripts/components/hover_component.gd" id="5_egk7c"]
 [ext_resource type="Script" uid="uid://obnnxh2qjhao" path="res://scripts/components/focus_component.gd" id="6_jiyuo"]
+[ext_resource type="Script" uid="uid://c7bbghxocglrt" path="res://scripts/components/character/movement_component/click_to_move_component.gd" id="7_7rlg1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_egk7c"]
 size = Vector2(12, 14)
@@ -49,6 +50,18 @@ visuals = NodePath("../Visuals")
 outline_color = Color(1, 1, 1, 1)
 outline_thickness = 1
 
+[node name="FocusComponent" type="Node" parent="." node_paths=PackedStringArray("target", "hover_component", "outline_highlighter", "pathfinder_component", "click_to_move_component")]
+script = ExtResource("6_jiyuo")
+target = NodePath("..")
+hover_component = NodePath("../HoverComponent")
+outline_highlighter = NodePath("../OutlineHighlighter")
+pathfinder_component = NodePath("../AStarPathfinderComponent")
+click_to_move_component = NodePath("../ClickToMoveComponent")
+
+[node name="ClickToMoveComponent" type="Node" parent="." node_paths=PackedStringArray("a_star_pathfinder_component")]
+script = ExtResource("7_7rlg1")
+a_star_pathfinder_component = NodePath("../AStarPathfinderComponent")
+
 [node name="HoverComponent" type="Node2D" parent="." node_paths=PackedStringArray("outline_highlighter", "focus_component")]
 script = ExtResource("5_egk7c")
 outline_highlighter = NodePath("../OutlineHighlighter")
@@ -60,13 +73,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HoverComponent/HoverArea"]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_egk7c")
-
-[node name="FocusComponent" type="Node" parent="." node_paths=PackedStringArray("target", "hover_component", "outline_highlighter", "pathfinder_component")]
-script = ExtResource("6_jiyuo")
-target = NodePath("..")
-hover_component = NodePath("../HoverComponent")
-outline_highlighter = NodePath("../OutlineHighlighter")
-pathfinder_component = NodePath("../AStarPathfinderComponent")
 
 [node name="Visuals" type="CanvasGroup" parent="."]
 z_index = 1

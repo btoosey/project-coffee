@@ -38,8 +38,8 @@ func _ready() -> void:
 	target_timer.start()
 
 
-func _establish_path_to_target() -> void:
-	path_to_target = pathfinding_grid.get_point_path(character.global_position / Globals.TILE_SIZE, target_tile, true)
+func establish_path_to_target(target: Vector2i) -> void:
+	path_to_target = pathfinding_grid.get_point_path(character.global_position / Globals.TILE_SIZE, target, true)
 	visual_path_line2D.points = path_to_target
 
 	if path_to_target.size() >= 1:
@@ -51,7 +51,7 @@ func _establish_path_to_target() -> void:
 
 func _on_target_timer_timeout() -> void:
 	_select_character_target()
-	_establish_path_to_target()
+	establish_path_to_target(target_tile)
 
 
 func _select_character_target() -> void:

@@ -82,7 +82,10 @@ wait_time = 3.0
 max_speed = 34.0
 acceleration = 1.2
 
-[node name="Visuals" parent="CharacterBase" index="6"]
+[node name="ClickToMoveComponent" parent="CharacterBase" index="5" node_paths=PackedStringArray("walls_tilemap_layer")]
+walls_tilemap_layer = NodePath("../../TileMapLayer")
+
+[node name="Visuals" parent="CharacterBase" index="7"]
 material = SubResource("ShaderMaterial_l3cfh")
 
 [node name="ActionModeUI" parent="." instance=ExtResource("4_l3cfh")]

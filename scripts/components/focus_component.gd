@@ -5,6 +5,7 @@ extends Node
 @export var hover_component: HoverComponent = null
 @export var outline_highlighter: OutlineHighlighter = null
 @export var pathfinder_component: AStarPathfinderComponent = null
+@export var click_to_move_component: ClickToMoveComponent = null
 
 var is_focused: bool = false
 
@@ -19,6 +20,9 @@ func _input(event: InputEvent) -> void:
 		if pathfinder_component:
 			pathfinder_component.visual_path_line2D.default_color = pathfinder_component.line_color
 
+		if click_to_move_component:
+			click_to_move_component.enabled = true
+
 	if event.is_action_pressed("character_focus_toggle") && !hover_component.is_hovered:
 		_clear_focused_characters_group()
 		is_focused = false
@@ -26,6 +30,9 @@ func _input(event: InputEvent) -> void:
 
 		if pathfinder_component:
 			pathfinder_component.visual_path_line2D.default_color = Color.TRANSPARENT
+
+		if click_to_move_component:
+			click_to_move_component.enabled = false
 
 
 func _clear_focused_characters_group() -> void:
