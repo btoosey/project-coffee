@@ -75,9 +75,6 @@ zone_manager = NodePath("../../ZoneManager")
 [node name="Line2D" parent="CharacterBase/AStarPathfinderComponent" index="0"]
 default_color = Color(1, 1, 1, 0)
 
-[node name="TargetTimer" parent="CharacterBase/AStarPathfinderComponent" index="1"]
-wait_time = 3.0
-
 [node name="VelocityComponent" parent="CharacterBase" index="1"]
 max_speed = 34.0
 acceleration = 1.2

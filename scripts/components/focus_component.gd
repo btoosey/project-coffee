@@ -18,7 +18,7 @@ func _input(event: InputEvent) -> void:
 		outline_highlighter.highlight()
 
 		if pathfinder_component:
-			pathfinder_component.visual_path_line2D.default_color = pathfinder_component.line_color
+			pathfinder_component.visual_path_line2D.default_color = pathfinder_component.LINE_COLOR
 
 		if click_to_move_component:
 			click_to_move_component.enabled = true
