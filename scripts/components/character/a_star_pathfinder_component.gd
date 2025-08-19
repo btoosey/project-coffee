@@ -3,13 +3,10 @@ extends Node
 
 signal character_to_target_path_acquired(path)
 
-const LINE_COLOR: Color = Color8(255, 255, 255, 60)
-
 @export var tilemap_layer_world: TileMapLayer = null
 @export var tilemap_layer_walls: TileMapLayer = null
 @export var tilemap_layer_zones: TileMapLayer = null
 @export var character: Node2D = null
-@export var visual_path_line2D: Line2D = null
 @export var velocity_component: VelocityComponent = null
 @export var zone_manager: ZoneManager = null
 
@@ -19,8 +16,6 @@ var target_tile: Vector2i
 
 
 func _ready() -> void:
-	visual_path_line2D.global_position = Vector2(Globals.HALF_TILE_SIZE, Globals.HALF_TILE_SIZE)
-
 	zone_manager.zone_tile_added.connect(_on_zone_tile_added)
 	zone_manager.zone_tile_removed.connect(_on_zone_tile_removed)
 
@@ -36,10 +31,8 @@ func _ready() -> void:
 
 func establish_path_to_target(target: Vector2i) -> void:
 	path_to_target = pathfinding_grid.get_point_path(character.global_position / Globals.TILE_SIZE, target, true)
-	visual_path_line2D.points = path_to_target
 
 	if path_to_target.size() >= 1:
-		visual_path_line2D.points = path_to_target
 		path_to_target.remove_at(0)
 
 	character_to_target_path_acquired.emit(path_to_target)
