@@ -1,13 +1,22 @@
-[gd_scene load_steps=17 format=4 uid="uid://ojp87xwddiij"]
+[gd_scene load_steps=23 format=4 uid="uid://ojp87xwddiij"]
 
 [ext_resource type="Texture2D" uid="uid://6ehxehli6saf" path="res://assets/sprites/tilemaps/walls/placeholder_wall.png" id="1_hyk8p"]
 [ext_resource type="Script" uid="uid://c4gqjje8oiaxq" path="res://scripts/managers/zone_manager.gd" id="1_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://d16s4bnnn4ana" path="res://scenes/character/base/character_base.tscn" id="2_iuonh"]
 [ext_resource type="Texture2D" uid="uid://daivcj5oxngqf" path="res://assets/sprites/tilemaps/zones/staff_zone.png" id="2_ow5a4"]
+[ext_resource type="Texture2D" uid="uid://cty4qcgto21db" path="res://assets/sprites/tilemaps/move_highlight/move_highlight.png" id="3_b1x3f"]
 [ext_resource type="Shader" uid="uid://c4oea7qk6fprd" path="res://resources/shaders/outline_highlighter.gdshader" id="3_k2fmo"]
-[ext_resource type="Texture2D" uid="uid://dc67vv1nf50ux" path="res://assets/sprites/tilemaps/walls/furniture-counters-tileset.png" id="3_yyfjg"]
+[ext_resource type="Script" uid="uid://dx5qnxrkiruq1" path="res://scripts/components/character/movement_component/move_highlight_layer.gd" id="3_yyfjg"]
+[ext_resource type="Texture2D" uid="uid://dc67vv1nf50ux" path="res://assets/sprites/tilemaps/walls/furniture-counters-tileset.png" id="5_panda"]
 [ext_resource type="Texture2D" uid="uid://j1pl7uflui35" path="res://assets/sprites/tilemaps/zones/plan_zone.png" id="4_hujxm"]
 [ext_resource type="PackedScene" uid="uid://d2med65ppcfws" path="res://scenes/ui/ui.tscn" id="4_l3cfh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hujxm"]
+texture = ExtResource("1_hyk8p")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_yyfjg"]
+sources/0 = SubResource("TileSetAtlasSource_hujxm")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iuonh"]
 texture = ExtResource("1_hyk8p")
@@ -15,7 +24,7 @@ texture = ExtResource("1_hyk8p")
 0:0/0/custom_data_0 = "Wall"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a8run"]
-texture = ExtResource("3_yyfjg")
+texture = ExtResource("5_panda")
 0:0/size_in_atlas = Vector2i(1, 2)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 8)
@@ -31,6 +40,13 @@ custom_data_layer_0/name = "Type"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_iuonh")
 sources/2 = SubResource("TileSetAtlasSource_a8run")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a8run"]
+texture = ExtResource("3_b1x3f")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ouso4"]
+sources/0 = SubResource("TileSetAtlasSource_a8run")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yyfjg"]
 texture = ExtResource("2_ow5a4")
@@ -63,10 +79,21 @@ boundary_rect = Rect2(15, 6, 10, 10)
 zoning_layer = NodePath("../ZoningLayer")
 planning_layer = NodePath("../PlanningLayer")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAXAA8AAAAAAAAAAAAPAAYAAAAAAAAAAAAQAAYAAAAAAAAAAAARAAYAAAAAAAAAAAASAAYAAAAAAAAAAAATAAYAAAAAAAAAAAAUAAYAAAAAAAAAAAAVAAYAAAAAAAAAAAAWAAYAAAAAAAAAAAAXAAYAAAAAAAAAAAAPAA8AAAAAAAAAAAAQAA8AAAAAAAAAAAARAA8AAAAAAAAAAAASAA8AAAAAAAAAAAATAA8AAAAAAAAAAAAUAA8AAAAAAAAAAAAVAA8AAAAAAAAAAAAWAA8AAAAAAAAAAAAYAAYAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAAYAA4AAAAAAAAAAAAYAA8AAAAAAAAAAAATAAsAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAsAAAAAAAAAAAAPAAwAAAAAAAAAAAAPAA0AAAAAAAAAAAAPAA4AAAAAAAAAAAAQAAgAAgAAAAAAAAARAAgAAgABAAAAAAASAAgAAgACAAAAAAA=")
+[node name="WorldLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAAoABcAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_yyfjg")
+metadata/_edit_lock_ = true
+
+[node name="WallsLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAXAA8AAAAAAAAAAAAPAAYAAAAAAAAAAAAQAAYAAAAAAAAAAAARAAYAAAAAAAAAAAASAAYAAAAAAAAAAAATAAYAAAAAAAAAAAAUAAYAAAAAAAAAAAAVAAYAAAAAAAAAAAAWAAYAAAAAAAAAAAAXAAYAAAAAAAAAAAAPAA8AAAAAAAAAAAAQAA8AAAAAAAAAAAARAA8AAAAAAAAAAAASAA8AAAAAAAAAAAATAA8AAAAAAAAAAAAUAA8AAAAAAAAAAAAVAA8AAAAAAAAAAAAWAA8AAAAAAAAAAAAYAAYAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAAYAA4AAAAAAAAAAAAYAA8AAAAAAAAAAAATAAsAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAsAAAAAAAAAAAAPAAwAAAAAAAAAAAAPAA0AAAAAAAAAAAAPAA4AAAAAAAAAAAA=")
+
 tile_set = SubResource("TileSet_k2fmo")
+metadata/_edit_lock_ = true
+
+[node name="MoveHighlightLayer" type="TileMapLayer" parent="."]
+visible = false
+tile_set = SubResource("TileSet_ouso4")
+script = ExtResource("3_yyfjg")
 metadata/_edit_lock_ = true
 
 [node name="ZoningLayer" type="TileMapLayer" parent="."]
@@ -83,22 +110,24 @@ metadata/_edit_lock_ = true
 y_sort_enabled = true
 position = Vector2(312, 168)
 
-[node name="AStarPathfinderComponent" parent="CharacterBase" index="0" node_paths=PackedStringArray("tilemap_layer_walls", "tilemap_layer_zones", "zone_manager")]
-tilemap_layer_walls = NodePath("../../TileMapLayer")
+[node name="AStarPathfinderComponent" parent="CharacterBase" index="0" node_paths=PackedStringArray("tilemap_layer_world", "tilemap_layer_walls", "tilemap_layer_zones", "zone_manager")]
+tilemap_layer_world = NodePath("../../WorldLayer")
+tilemap_layer_walls = NodePath("../../WallsLayer")
 tilemap_layer_zones = NodePath("../../ZoningLayer")
 zone_manager = NodePath("../../ZoneManager")
-
-[node name="Line2D" parent="CharacterBase/AStarPathfinderComponent" index="0"]
-default_color = Color(1, 1, 1, 0)
-
-[node name="TargetTimer" parent="CharacterBase/AStarPathfinderComponent" index="1"]
-wait_time = 3.0
 
 [node name="VelocityComponent" parent="CharacterBase" index="1"]
 max_speed = 34.0
 acceleration = 1.2
 
-[node name="Visuals" parent="CharacterBase" index="6"]
+[node name="FocusComponent" parent="CharacterBase" index="4" node_paths=PackedStringArray("tilemap_layer_move_highlight")]
+tilemap_layer_move_highlight = NodePath("../../MoveHighlightLayer")
+
+[node name="ClickToMoveComponent" parent="CharacterBase" index="5" node_paths=PackedStringArray("tilemap_layer_world", "tilemap_layer_walls")]
+tilemap_layer_world = NodePath("../../WorldLayer")
+tilemap_layer_walls = NodePath("../../WallsLayer")
+
+[node name="Visuals" parent="CharacterBase" index="7"]
 material = SubResource("ShaderMaterial_l3cfh")
 
 [node name="ActionModeUI" parent="." instance=ExtResource("4_l3cfh")]

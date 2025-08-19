@@ -24,10 +24,15 @@ shader_parameter/line_thickness = 0
 [node name="CharacterBase" type="Node2D"]
 script = ExtResource("1_s8w3i")
 
-[node name="AStarPathfinderComponent" type="Node" parent="." node_paths=PackedStringArray("character", "velocity_component")]
+[node name="AStarPathfinderComponent" type="Node" parent="." node_paths=PackedStringArray("character", "visual_path_line2D", "velocity_component")]
 script = ExtResource("1_4u6nk")
 character = NodePath("..")
+visual_path_line2D = NodePath("Line2D")
 velocity_component = NodePath("../VelocityComponent")
+
+[node name="Line2D" type="Line2D" parent="AStarPathfinderComponent"]
+width = 2.0
+default_color = Color(1, 1, 1, 0.235294)
 
 [node name="RandomTargetPicker" type="Node" parent="AStarPathfinderComponent"]
 script = ExtResource("3_ds724")
@@ -37,19 +42,11 @@ script = ExtResource("3_ds724")
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("2_78gsm")
 
-[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("character", "velocity_component", "pathfinder_component", "visual_path_line2D")]
+[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("character", "velocity_component", "pathfinder_component")]
 script = ExtResource("3_03fy3")
 character = NodePath("..")
 velocity_component = NodePath("../VelocityComponent")
 pathfinder_component = NodePath("../AStarPathfinderComponent")
-visual_path_line2D = NodePath("Line2D")
-
-[node name="Line2D" type="Line2D" parent="MovementComponent"]
-width = 2.0
-default_color = Color(1, 1, 1, 0.235294)
-
-[node name="PathUpdateTimer" type="Timer" parent="MovementComponent"]
-wait_time = 0.22
 
 [node name="OutlineHighlighter" type="Node" parent="." node_paths=PackedStringArray("visuals")]
 script = ExtResource("4_g5fk4")
@@ -57,12 +54,12 @@ visuals = NodePath("../Visuals")
 outline_color = Color(1, 1, 1, 1)
 outline_thickness = 1
 
-[node name="FocusComponent" type="Node" parent="." node_paths=PackedStringArray("target", "hover_component", "outline_highlighter", "movement_component", "click_to_move_component")]
+[node name="FocusComponent" type="Node" parent="." node_paths=PackedStringArray("target", "hover_component", "outline_highlighter", "pathfinder_component", "click_to_move_component")]
 script = ExtResource("6_jiyuo")
 target = NodePath("..")
 hover_component = NodePath("../HoverComponent")
 outline_highlighter = NodePath("../OutlineHighlighter")
-movement_component = NodePath("../MovementComponent")
+pathfinder_component = NodePath("../AStarPathfinderComponent")
 click_to_move_component = NodePath("../ClickToMoveComponent")
 
 [node name="ClickToMoveComponent" type="Node" parent="." node_paths=PackedStringArray("a_star_pathfinder_component")]
@@ -91,6 +88,5 @@ texture = ExtResource("1_lc1d0")
 region_enabled = true
 region_rect = Rect2(16, 16, 16, 16)
 
-[connection signal="timeout" from="MovementComponent/PathUpdateTimer" to="MovementComponent" method="_on_path_update_timer_timeout"]
 [connection signal="mouse_entered" from="HoverComponent/HoverArea" to="HoverComponent" method="_on_hover_area_mouse_entered"]
 [connection signal="mouse_exited" from="HoverComponent/HoverArea" to="HoverComponent" method="_on_hover_area_mouse_exited"]
