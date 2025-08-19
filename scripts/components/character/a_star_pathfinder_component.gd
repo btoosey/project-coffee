@@ -5,6 +5,7 @@ signal character_to_target_path_acquired(path)
 
 const LINE_COLOR: Color = Color8(255, 255, 255, 60)
 
+@export var tilemap_layer_world: TileMapLayer = null
 @export var tilemap_layer_walls: TileMapLayer = null
 @export var tilemap_layer_zones: TileMapLayer = null
 @export var character: Node2D = null
@@ -23,7 +24,7 @@ func _ready() -> void:
 	zone_manager.zone_tile_added.connect(_on_zone_tile_added)
 	zone_manager.zone_tile_removed.connect(_on_zone_tile_removed)
 
-	pathfinding_grid.region = tilemap_layer_walls.get_used_rect()
+	pathfinding_grid.region = tilemap_layer_world.get_used_rect()
 	pathfinding_grid.cell_size = Vector2(Globals.TILE_SIZE, Globals.TILE_SIZE)
 	pathfinding_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
 	pathfinding_grid.update()

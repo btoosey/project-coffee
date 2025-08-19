@@ -6,6 +6,7 @@ extends Node
 @export var outline_highlighter: OutlineHighlighter = null
 @export var pathfinder_component: AStarPathfinderComponent = null
 @export var click_to_move_component: ClickToMoveComponent = null
+@export var tilemap_layer_move_highlight: TileMapLayer = null
 
 var is_focused: bool = false
 
@@ -23,6 +24,10 @@ func _input(event: InputEvent) -> void:
 		if click_to_move_component:
 			click_to_move_component.enabled = true
 
+		if tilemap_layer_move_highlight:
+			tilemap_layer_move_highlight.highlight_enabled = true
+			tilemap_layer_move_highlight.show()
+
 	if event.is_action_pressed("character_focus_toggle") && !hover_component.is_hovered:
 		_clear_focused_characters_group()
 		is_focused = false
@@ -33,6 +38,10 @@ func _input(event: InputEvent) -> void:
 
 		if click_to_move_component:
 			click_to_move_component.enabled = false
+
+		if tilemap_layer_move_highlight:
+			tilemap_layer_move_highlight.highlight_enabled = false
+			tilemap_layer_move_highlight.hide()
 
 
 func _clear_focused_characters_group() -> void:
