@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc67vv1nf50ux"
-path="res://.godot/imported/furniture-counters-tileset.png-3edd1406b45239c1562cff7e2db09dc8.ctex"
+uid="uid://dcyxahb5kxpdm"
+path="res://.godot/imported/furniture_counters_tileset.png-78b9a84944d191bd32fef50e408e61ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/tilemaps/walls/furniture-counters-tileset.png"
-dest_files=["res://.godot/imported/furniture-counters-tileset.png-3edd1406b45239c1562cff7e2db09dc8.ctex"]
+source_file="res://assets/sprites/tilemaps/walls/furniture_counters_tileset.png"
+dest_files=["res://.godot/imported/furniture_counters_tileset.png-78b9a84944d191bd32fef50e408e61ad.ctex"]
 
 [params]
 
