@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://8s3dbdku37vs"]
+[gd_scene format=3 uid="uid://8s3dbdku37vs"]
 
-[ext_resource type="Script" uid="uid://cfmjfhwcignlm" path="res://scripts/ui/clock/clock.gd" id="1_ic7of"]
+[ext_resource type="Script" uid="uid://cfmjfhwcignlm" path="res://scenes/ui/clock/clock.gd" id="1_ic7of"]
 
 [node name="Clock" type="CanvasLayer"]
 

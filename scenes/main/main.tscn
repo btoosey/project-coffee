@@ -1,7 +1,7 @@
-[gd_scene load_steps=23 format=4 uid="uid://ojp87xwddiij"]
+[gd_scene format=4 uid="uid://ojp87xwddiij"]
 
 [ext_resource type="Texture2D" uid="uid://6ehxehli6saf" path="res://assets/sprites/tilemaps/walls/placeholder_wall.png" id="1_hyk8p"]
-[ext_resource type="Script" uid="uid://c4gqjje8oiaxq" path="res://scripts/managers/zone_manager.gd" id="1_ow5a4"]
+[ext_resource type="Script" uid="uid://c4gqjje8oiaxq" path="res://scripts/custom_nodes/zone_manager.gd" id="1_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://d16s4bnnn4ana" path="res://scenes/character/base/character_base.tscn" id="2_iuonh"]
 [ext_resource type="Texture2D" uid="uid://daivcj5oxngqf" path="res://assets/sprites/tilemaps/zones/staff_zone.png" id="2_ow5a4"]
 [ext_resource type="Texture2D" uid="uid://dcyxahb5kxpdm" path="res://assets/sprites/tilemaps/walls/furniture_counters_tileset.png" id="3_a8run"]
@@ -65,47 +65,47 @@ texture = ExtResource("4_hujxm")
 [sub_resource type="TileSet" id="TileSet_a8run"]
 sources/0 = SubResource("TileSetAtlasSource_b1x3f")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_l3cfh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a8run"]
 resource_local_to_scene = true
 shader = ExtResource("3_k2fmo")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 0
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=328472188]
 
-[node name="ZoneManager" type="Node" parent="." node_paths=PackedStringArray("zoning_layer", "planning_layer")]
+[node name="ZoneManager" type="Node" parent="." unique_id=1675040024 node_paths=PackedStringArray("zoning_layer", "planning_layer")]
 script = ExtResource("1_ow5a4")
 boundary_rect = Rect2(15, 6, 10, 10)
 zoning_layer = NodePath("../ZoningLayer")
 planning_layer = NodePath("../PlanningLayer")
 
-[node name="WorldLayer" type="TileMapLayer" parent="."]
+[node name="WorldLayer" type="TileMapLayer" parent="." unique_id=958185022]
 tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAAoABcAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_yyfjg")
 metadata/_edit_lock_ = true
 
-[node name="WallsLayer" type="TileMapLayer" parent="."]
+[node name="WallsLayer" type="TileMapLayer" parent="." unique_id=2074751366]
 tile_map_data = PackedByteArray("AAAXAA8AAAAAAAAAAAAPAAYAAAAAAAAAAAAQAAYAAAAAAAAAAAARAAYAAAAAAAAAAAASAAYAAAAAAAAAAAATAAYAAAAAAAAAAAAUAAYAAAAAAAAAAAAVAAYAAAAAAAAAAAAWAAYAAAAAAAAAAAAXAAYAAAAAAAAAAAAPAA8AAAAAAAAAAAAQAA8AAAAAAAAAAAARAA8AAAAAAAAAAAASAA8AAAAAAAAAAAATAA8AAAAAAAAAAAAUAA8AAAAAAAAAAAAVAA8AAAAAAAAAAAAWAA8AAAAAAAAAAAAYAAYAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAAYAA4AAAAAAAAAAAAYAA8AAAAAAAAAAAATAAsAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAsAAAAAAAAAAAAPAAwAAAAAAAAAAAAPAA0AAAAAAAAAAAAPAA4AAAAAAAAAAAAQAAgAAQAAAAAAAAARAAgAAQABAAAAAAASAAgAAQACAAAAAAA=")
 tile_set = SubResource("TileSet_k2fmo")
 metadata/_edit_lock_ = true
 
-[node name="MoveHighlightLayer" type="TileMapLayer" parent="."]
+[node name="MoveHighlightLayer" type="TileMapLayer" parent="." unique_id=816046258]
 visible = false
 tile_set = SubResource("TileSet_ouso4")
 script = ExtResource("3_yyfjg")
 metadata/_edit_lock_ = true
 
-[node name="ZoningLayer" type="TileMapLayer" parent="."]
+[node name="ZoningLayer" type="TileMapLayer" parent="." unique_id=940908033]
 visible = false
 tile_set = SubResource("TileSet_l3cfh")
 metadata/_edit_lock_ = true
 
-[node name="PlanningLayer" type="TileMapLayer" parent="."]
+[node name="PlanningLayer" type="TileMapLayer" parent="." unique_id=1262616645]
 visible = false
 tile_set = SubResource("TileSet_a8run")
 metadata/_edit_lock_ = true
 
-[node name="CharacterBase" parent="." instance=ExtResource("2_iuonh")]
+[node name="CharacterBase" parent="." unique_id=1145434526 instance=ExtResource("2_iuonh")]
 y_sort_enabled = true
 position = Vector2(312, 168)
 
@@ -127,9 +127,9 @@ tilemap_layer_world = NodePath("../../WorldLayer")
 tilemap_layer_walls = NodePath("../../WallsLayer")
 
 [node name="Visuals" parent="CharacterBase" index="7"]
-material = SubResource("ShaderMaterial_l3cfh")
+material = SubResource("ShaderMaterial_a8run")
 
-[node name="ActionModeUI" parent="." instance=ExtResource("4_l3cfh")]
+[node name="ActionModeUI" parent="." unique_id=2063908875 instance=ExtResource("4_l3cfh")]
 
 [node name="Control" parent="ActionModeUI" index="0"]
 offset_left = 54.0
